@@ -1866,6 +1866,26 @@
           <input type="number" id="d-kids" min="0" max="20" placeholder="0" value="0" />
         </div>
         <div class="diag-field">
+          <label>お子さんの年齢帯 <span style="font-size:.78rem;color:var(--text-light)">（複数可・子どもがいる方のみ）</span></label>
+          <div class="diag-checks" id="d-child-ages">
+            <label class="diag-check-label"><input type="checkbox" value="preschool">👶 未就学児（0〜5歳）</label>
+            <label class="diag-check-label"><input type="checkbox" value="primary">🎒 小学生（6〜12歳）</label>
+            <label class="diag-check-label"><input type="checkbox" value="middle">📚 中学生（13〜15歳）</label>
+            <label class="diag-check-label"><input type="checkbox" value="high">🏫 高校生（16〜18歳）</label>
+            <label class="diag-check-label"><input type="checkbox" value="college">🎓 大学生・専門学生（19歳〜）</label>
+          </div>
+        </div>
+        <div class="diag-field">
+          <label>扶養家族の人数 <span style="font-size:.78rem;color:var(--text-light)">（配偶者・子ども・親など合計）</span></label>
+          <select id="d-dependents">
+            <option value="0">0人</option>
+            <option value="1">1人</option>
+            <option value="2">2人</option>
+            <option value="3">3人</option>
+            <option value="4">4人以上</option>
+          </select>
+        </div>
+        <div class="diag-field">
           <label>おおよその世帯年収</label>
           <select id="d-income">
             <option value="">-- 選択してください --</option>
@@ -2522,10 +2542,10 @@
   // ─── かんたん診断 ───────────────────────────
   const PROGRAMS = [
     // 子育て
-    { cat:'子育て', title:'児童手当', desc:'中学校卒業まで（15歳到達後の最初の3月末まで）の児童を養育している方に支給。', amount:'月額 1万〜1.5万円', concerns:['childcare'], incomes:['low','mid-low','mid','mid-high','high'], minKids:1, minAge:0, maxAge:80 },
-    { cat:'子育て', title:'大阪市 子ども医療費助成（18歳まで）', desc:'大阪市在住の18歳までの子どもの医療費（通院・入院）を助成。自己負担がほぼ0に。', amount:'自己負担 ほぼ0円', concerns:['childcare','medical'], incomes:['low','mid-low','mid','mid-high','high'], minKids:1, minAge:0, maxAge:80, city:'大阪市' },
-    { cat:'子育て', title:'第2子以降 保育料 無償化（大阪府）', desc:'大阪府独自。第2子以降の認可保育所等の保育料を所得に関わらず無償化。', amount:'保育料 0円', concerns:['childcare'], incomes:['low','mid-low','mid','mid-high','high'], minKids:2, minAge:20, maxAge:50 },
-    { cat:'子育て', title:'ひとり親家庭 医療費助成', desc:'ひとり親家庭の親と18歳未満の子どもの医療費を助成。', amount:'医療費 自己負担なし', concerns:['childcare','medical'], incomes:['low','mid-low','mid'], minKids:1, minAge:0, maxAge:60, family:'single_parent' },
+    { cat:'子育て', title:'児童手当', desc:'中学校卒業まで（15歳到達後の最初の3月末まで）の児童を養育している方に支給。', amount:'月額 1万〜1.5万円', concerns:['childcare'], incomes:['low','mid-low','mid','mid-high','high'], minKids:1, minAge:0, maxAge:80, childAgeGroups:['preschool','primary','middle'] },
+    { cat:'子育て', title:'大阪市 子ども医療費助成（18歳まで）', desc:'大阪市在住の18歳までの子どもの医療費（通院・入院）を助成。自己負担がほぼ0に。', amount:'自己負担 ほぼ0円', concerns:['childcare','medical'], incomes:['low','mid-low','mid','mid-high','high'], minKids:1, minAge:0, maxAge:80, city:'大阪市', childAgeGroups:['preschool','primary','middle','high'] },
+    { cat:'子育て', title:'第2子以降 保育料 無償化（大阪府）', desc:'大阪府独自。第2子以降の認可保育所等の保育料を所得に関わらず無償化。', amount:'保育料 0円', concerns:['childcare'], incomes:['low','mid-low','mid','mid-high','high'], minKids:2, minAge:20, maxAge:50, childAgeGroups:['preschool'] },
+    { cat:'子育て', title:'ひとり親家庭 医療費助成', desc:'ひとり親家庭の親と18歳未満の子どもの医療費を助成。', amount:'医療費 自己負担なし', concerns:['childcare','medical'], incomes:['low','mid-low','mid'], minKids:1, minAge:0, maxAge:60, family:'single_parent', childAgeGroups:['preschool','primary','middle','high'] },
     { cat:'子育て', title:'出産育児一時金', desc:'健康保険加入者が出産した際に支給される給付金。', amount:'50万円（産科医療補償制度加算含む）', concerns:['childcare'], incomes:['low','mid-low','mid','mid-high','high'], minKids:0, minAge:18, maxAge:50 },
 
     // 医療
@@ -2547,9 +2567,9 @@
     { cat:'障害', title:'特別障害者手当', desc:'著しく重度の障がいを持つ20歳以上の在宅の方に支給。', amount:'月額 約2.8万円', concerns:['disability'], incomes:['low','mid-low'], minKids:0, minAge:20, maxAge:110 },
 
     // 教育
-    { cat:'教育', title:'私立高校授業料 実質無償化（大阪府独自）', desc:'大阪府の独自制度で、所得制限なく私立高校の授業料を実質無料に。全国初。', amount:'授業料 全額', concerns:['education'], incomes:['low','mid-low','mid','mid-high','high'], minKids:1, minAge:30, maxAge:60 },
-    { cat:'教育', title:'高等学校等就学支援金', desc:'国の制度。年収910万円未満世帯の高校生に授業料を支援。', amount:'年間 最大39.6万円', concerns:['education'], incomes:['low','mid-low','mid'], minKids:1, minAge:25, maxAge:60 },
-    { cat:'教育', title:'大学無償化（高等教育の修学支援）', desc:'住民税非課税世帯等の学生に授業料減免＋給付型奨学金。', amount:'授業料減免＋給付型奨学金', concerns:['education'], incomes:['low','mid-low'], minKids:1, minAge:25, maxAge:60 },
+    { cat:'教育', title:'私立高校授業料 実質無償化（大阪府独自）', desc:'大阪府の独自制度で、所得制限なく私立高校の授業料を実質無料に。全国初。', amount:'授業料 全額', concerns:['education'], incomes:['low','mid-low','mid','mid-high','high'], minKids:1, minAge:30, maxAge:60, childAgeGroups:['high'] },
+    { cat:'教育', title:'高等学校等就学支援金', desc:'国の制度。年収910万円未満世帯の高校生に授業料を支援。', amount:'年間 最大39.6万円', concerns:['education'], incomes:['low','mid-low','mid'], minKids:1, minAge:25, maxAge:60, childAgeGroups:['high'] },
+    { cat:'教育', title:'大学無償化（高等教育の修学支援）', desc:'住民税非課税世帯等の学生に授業料減免＋給付型奨学金。', amount:'授業料減免＋給付型奨学金', concerns:['education'], incomes:['low','mid-low'], minKids:1, minAge:25, maxAge:60, childAgeGroups:['college'] },
 
     // 就労
     { cat:'就労', title:'雇用保険（基本手当・失業給付）', desc:'離職した方に一定期間、生活を安定させるための給付金を支給。', amount:'賃金日額の50〜80%', concerns:['job'], incomes:['low','mid-low','mid','mid-high','high'], minKids:0, minAge:18, maxAge:65 },
@@ -2612,6 +2632,8 @@
       const income = document.getElementById('d-income').value;
       const family = document.getElementById('d-family').value;
       const kids = parseInt(document.getElementById('d-kids').value) || 0;
+      const childAges = Array.from(document.querySelectorAll('#d-child-ages input:checked')).map(i => i.value);
+      const dependents = parseInt(document.getElementById('d-dependents').value) || 0;
       const concerns = Array.from(document.querySelectorAll('#d-concerns input:checked')).map(i => i.value);
       if (concerns.length === 0) { alert('お困りごとを1つ以上選択してください'); return; }
       const isOsakaCity = city.startsWith('大阪市');
@@ -2622,6 +2644,10 @@
         if (p.family && p.family !== family) return false;
         if (!p.incomes.includes(income)) return false;
         if (!concerns.some(c => p.concerns.includes(c))) return false;
+        // 子どもの年齢帯フィルター（プログラムに指定があり、ユーザーが選択した場合のみ）
+        if (p.childAgeGroups && childAges.length > 0 && !childAges.some(a => p.childAgeGroups.includes(a))) return false;
+        // 扶養人数フィルター
+        if (p.minDependents && dependents < p.minDependents) return false;
         return true;
       });
       document.getElementById('p-panel-3').classList.remove('active');
@@ -2917,7 +2943,10 @@
     document.getElementById('d-gender').value = '';
     document.getElementById('d-family').value = '';
     document.getElementById('d-kids').value = '0';
+    document.getElementById('d-dependents').value = '0';
     document.getElementById('d-income').value = '';
+    document.querySelectorAll('#d-child-ages input').forEach(i => { i.checked = false; });
+    document.querySelectorAll('#d-child-ages .diag-check-label').forEach(l => l.classList.remove('checked'));
     document.querySelectorAll('#d-concerns input').forEach(i => i.checked = false);
 
     // 法人フローをリセット
