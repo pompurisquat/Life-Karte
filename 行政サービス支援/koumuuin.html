@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>公務員のための金融知識ガイド | あなたの職種から始める賢いお金の話</title>
+  <meta name="description" content="公務員・教員・警察官・消防士など職種別に、付加給付制度・共済・保険・投資を分かりやすく解説。知らないと損する特有の制度をチェック。" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Lato:wght@700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy:        #1A2E5A;
+      --navy-dark:   #0F1E3D;
+      --navy-mid:    #2C4A8A;
+      --navy-light:  #D0DAEF;
+      --navy-pale:   #F0F4FB;
+      --gold:        #E8A820;
+      --gold-light:  #FDF3DC;
+      --red:         #C0392B;
+      --red-light:   #FDECEA;
+      --green:       #1A7A4A;
+      --green-light: #D6EFDF;
+      --text:        #222222;
+      --text-light:  #5A5A5A;
+      --white:       #FFFFFF;
+      --bg:          #F4F7FC;
+      --radius:      16px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.8;
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      background: rgba(26,46,90,0.96);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px;
+      height: 60px;
+    }
+    nav .logo {
+      color: var(--white);
+      font-weight: 900;
+      font-size: 1rem;
+      letter-spacing: .03em;
+    }
+    nav .logo span { color: var(--gold); }
+    nav .nav-links { display: flex; gap: 24px; }
+    nav .nav-links a {
+      color: rgba(255,255,255,.8);
+      text-decoration: none;
+      font-size: .85rem;
+      font-weight: 500;
+      transition: color .2s;
+    }
+    nav .nav-links a:hover { color: var(--gold); }
+
+    /* ─── HERO ─── */
+    .hero {
+      margin-top: 60px;
+      background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy-mid) 60%, #3A5FA0 100%);
+      padding: 80px 24px 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 320px; height: 320px;
+      border-radius: 50%;
+      background: rgba(232,168,32,.12);
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -60px; left: -60px;
+      width: 240px; height: 240px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.06);
+    }
+    .hero-badge {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--navy-dark);
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      padding: 4px 16px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+    }
+    .hero h1 {
+      color: var(--white);
+      font-size: clamp(1.6rem, 4vw, 2.6rem);
+      font-weight: 900;
+      line-height: 1.4;
+      margin-bottom: 16px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--gold);
+    }
+    .hero p {
+      color: rgba(255,255,255,.8);
+      font-size: .95rem;
+      max-width: 560px;
+      margin: 0 auto 32px;
+    }
+    .hero-cta {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--navy-dark);
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 14px 36px;
+      border-radius: 40px;
+      text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 4px 20px rgba(232,168,32,.4);
+    }
+    .hero-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(232,168,32,.5); }
+
+    /* ─── ALERT BOX ─── */
+    .alert-strip {
+      background: var(--red-light);
+      border-left: 5px solid var(--red);
+      padding: 16px 24px;
+      margin: 0 auto;
+      max-width: 860px;
+      border-radius: 0 var(--radius) var(--radius) 0;
+      margin-top: 32px;
+    }
+    .alert-strip strong { color: var(--red); }
+
+    /* ─── SECTION ─── */
+    section { padding: 64px 24px; }
+    .container { max-width: 960px; margin: 0 auto; }
+
+    .section-label {
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      color: var(--navy-mid);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    h2 {
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 900;
+      color: var(--navy-dark);
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
+    h2 em { font-style: normal; color: var(--navy-mid); }
+    .lead {
+      color: var(--text-light);
+      font-size: .95rem;
+      margin-bottom: 40px;
+      max-width: 640px;
+    }
+
+    /* ─── CATEGORY TABS ─── */
+    .tab-wrap {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+    .tab-btn {
+      padding: 8px 20px;
+      border-radius: 24px;
+      border: 2px solid var(--navy-light);
+      background: var(--white);
+      color: var(--navy);
+      font-weight: 700;
+      font-size: .85rem;
+      cursor: pointer;
+      transition: all .2s;
+    }
+    .tab-btn:hover, .tab-btn.active {
+      background: var(--navy);
+      border-color: var(--navy);
+      color: var(--white);
+    }
+
+    /* ─── TYPE CARDS GRID ─── */
+    .type-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .type-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: 0 2px 12px rgba(26,46,90,.08);
+      border-top: 4px solid var(--navy-mid);
+      transition: transform .2s, box-shadow .2s;
+      cursor: pointer;
+    }
+    .type-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 28px rgba(26,46,90,.14);
+    }
+    .type-card.highlight { border-top-color: var(--gold); }
+    .type-card.highlight .card-badge { background: var(--gold-light); color: #7A5500; }
+
+    .card-icon {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+    .card-badge {
+      display: inline-block;
+      font-size: .7rem;
+      font-weight: 700;
+      padding: 2px 10px;
+      border-radius: 12px;
+      background: var(--navy-pale);
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+    .type-card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--navy-dark);
+      margin-bottom: 6px;
+    }
+    .type-card .card-sub {
+      font-size: .8rem;
+      color: var(--text-light);
+      margin-bottom: 12px;
+    }
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .card-tag {
+      font-size: .72rem;
+      padding: 3px 10px;
+      border-radius: 10px;
+      background: var(--bg);
+      color: var(--text-light);
+      font-weight: 500;
+    }
+    .card-tag.green { background: var(--green-light); color: var(--green); }
+    .card-tag.gold { background: var(--gold-light); color: #7A5500; }
+    .card-tag.red { background: var(--red-light); color: var(--red); }
+
+    /* ─── BENEFIT COMPARISON ─── */
+    .benefit-section { background: var(--navy-pale); }
+
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .88rem;
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 2px 16px rgba(26,46,90,.08);
+    }
+    .compare-table th {
+      background: var(--navy);
+      color: var(--white);
+      padding: 14px 16px;
+      text-align: left;
+      font-weight: 700;
+    }
+    .compare-table th:first-child { border-radius: 0; }
+    .compare-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--navy-pale);
+      vertical-align: top;
+    }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table tr:nth-child(even) td { background: #F8FAFD; }
+    .compare-table .good { color: var(--green); font-weight: 700; }
+    .compare-table .warn { color: #B8860B; font-weight: 700; }
+    .compare-table .bad { color: var(--red); font-weight: 700; }
+    .compare-table .highlight-row td { background: var(--gold-light) !important; }
+
+    /* ─── KNOWLEDGE CARDS ─── */
+    .knowledge-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+    }
+    .k-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: 0 2px 12px rgba(26,46,90,.07);
+    }
+    .k-card .k-num {
+      font-family: 'Lato', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--navy-light);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .k-card h3 { font-size: 1rem; font-weight: 700; color: var(--navy-dark); margin-bottom: 8px; }
+    .k-card p { font-size: .85rem; color: var(--text-light); }
+
+    /* ─── FLOW STEPS ─── */
+    .flow-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .flow-step {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      position: relative;
+    }
+    .flow-step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: 24px;
+      top: 52px;
+      bottom: -16px;
+      width: 2px;
+      background: var(--navy-light);
+    }
+    .step-num {
+      flex-shrink: 0;
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: var(--navy);
+      color: var(--white);
+      font-family: 'Lato', sans-serif;
+      font-weight: 900;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .step-body {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      flex: 1;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 10px rgba(26,46,90,.07);
+    }
+    .step-body h3 { font-size: 1rem; font-weight: 700; color: var(--navy-dark); margin-bottom: 6px; }
+    .step-body p { font-size: .85rem; color: var(--text-light); }
+    .step-body .step-tip {
+      margin-top: 10px;
+      background: var(--navy-pale);
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: .8rem;
+      color: var(--navy);
+    }
+
+    /* ─── CTA SECTION ─── */
+    .cta-section {
+      background: linear-gradient(135deg, var(--navy-dark), var(--navy-mid));
+      text-align: center;
+      padding: 64px 24px;
+    }
+    .cta-section h2 { color: var(--white); margin-bottom: 12px; }
+    .cta-section p { color: rgba(255,255,255,.75); margin-bottom: 32px; font-size: .95rem; }
+    .cta-btn {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--navy-dark);
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 14px 40px;
+      border-radius: 40px;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(232,168,32,.4);
+      transition: transform .2s;
+    }
+    .cta-btn:hover { transform: translateY(-2px); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--navy-dark);
+      color: rgba(255,255,255,.5);
+      text-align: center;
+      padding: 24px;
+      font-size: .8rem;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 640px) {
+      nav .nav-links { display: none; }
+      .compare-table { font-size: .78rem; }
+      .compare-table th, .compare-table td { padding: 10px 10px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">公務員の<span>金融ガイド</span></div>
+  <div class="nav-links">
+    <a href="#types">職種で選ぶ</a>
+    <a href="#benefits">制度比較</a>
+    <a href="#flow">学習ステップ</a>
+    <a href="#contact">相談する</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">公務員専門 金融知識ガイド</div>
+  <h1>あなたの職種には<br><em>知らないと損する制度</em>がある</h1>
+  <p>付加給付制度・共済・退職金・年金——<br>公務員特有の手厚い保障を正しく理解したうえで、<br>保険・投資を見直しましょう。</p>
+  <a href="#types" class="hero-cta">まず職種を確認する</a>
+
+  <div class="container">
+    <div class="alert-strip">
+      <strong>⚠️ 多くの公務員が「損している」現実</strong>：共済の付加給付で医療費がほぼカバーされるのに、不要な民間医療保険に毎月数千円を払い続けているケースが多数あります。
+    </div>
+  </div>
+</section>
+
+<!-- 職種分類 -->
+<section id="types">
+  <div class="container">
+    <div class="section-label">STEP 1 — 職種を知る</div>
+    <h2>公務員は大きく<em>3つ</em>に分かれる</h2>
+    <p class="lead">職種によって加入する共済組合が異なり、付加給付・医療費補填・退職金の計算方法も変わります。まず自分の区分を確認しましょう。</p>
+
+    <div class="tab-wrap">
+      <button class="tab-btn active">全て表示</button>
+      <button class="tab-btn">国家公務員</button>
+      <button class="tab-btn">地方公務員</button>
+      <button class="tab-btn">準公務員</button>
+    </div>
+
+    <div class="type-grid">
+
+      <!-- 国家公務員 -->
+      <div class="type-card">
+        <div class="card-icon">🏛️</div>
+        <div class="card-badge">国家公務員 / 一般職</div>
+        <h3>省庁・国の機関職員</h3>
+        <p class="card-sub">財務省・国土交通省・税務署・ハローワーク等</p>
+        <div class="card-tags">
+          <span class="card-tag green">各省庁共済組合</span>
+          <span class="card-tag gold">付加給付あり</span>
+          <span class="card-tag">退職手当充実</span>
+        </div>
+      </div>
+
+      <div class="type-card">
+        <div class="card-icon">⚔️</div>
+        <div class="card-badge">国家公務員 / 特別職</div>
+        <h3>自衛官・裁判官</h3>
+        <p class="card-sub">防衛省・裁判所・国会議員等</p>
+        <div class="card-tags">
+          <span class="card-tag green">防衛省共済 / 裁判官共済</span>
+          <span class="card-tag gold">付加給付あり</span>
+          <span class="card-tag red">定年・転職リスク注意</span>
+        </div>
+      </div>
+
+      <!-- 地方公務員 -->
+      <div class="type-card highlight">
+        <div class="card-icon">🍎</div>
+        <div class="card-badge">地方公務員 / 教育職</div>
+        <h3>公立学校の教員</h3>
+        <p class="card-sub">小・中・高・特別支援学校の教諭・養護教諭等</p>
+        <div class="card-tags">
+          <span class="card-tag green">教職員共済組合</span>
+          <span class="card-tag gold">付加給付◎ 月25,000円超を補填</span>
+          <span class="card-tag">教育ローン優遇</span>
+        </div>
+      </div>
+
+      <div class="type-card">
+        <div class="card-icon">🏢</div>
+        <div class="card-badge">地方公務員 / 一般行政職</div>
+        <h3>都道府県・市区町村職員</h3>
+        <p class="card-sub">役所・保健センター・出先機関等</p>
+        <div class="card-tags">
+          <span class="card-tag green">地方職員共済組合</span>
+          <span class="card-tag gold">付加給付あり</span>
+          <span class="card-tag">異動範囲が広い</span>
+        </div>
+      </div>
+
+      <div class="type-card">
+        <div class="card-icon">👮</div>
+        <div class="card-badge">地方公務員 / 警察職</div>
+        <h3>警察官</h3>
+        <p class="card-sub">都道府県警察・警視庁</p>
+        <div class="card-tags">
+          <span class="card-tag green">警察共済組合</span>
+          <span class="card-tag gold">付加給付あり</span>
+          <span class="card-tag red">危険手当・交通事故リスク注意</span>
+        </div>
+      </div>
+
+      <div class="type-card">
+        <div class="card-icon">🚒</div>
+        <div class="card-badge">地方公務員 / 消防職</div>
+        <h3>消防士・救急隊員</h3>
+        <p class="card-sub">市区町村消防本部・東京消防庁</p>
+        <div class="card-tags">
+          <span class="card-tag green">地方職員共済組合</span>
+          <span class="card-tag gold">付加給付あり</span>
+          <span class="card-tag red">就業不能リスク検討を</span>
+        </div>
+      </div>
+
+      <div class="type-card">
+        <div class="card-icon">🏥</div>
+        <div class="card-badge">地方公務員 / 医療・福祉職</div>
+        <h3>公立病院の看護師・保育士（公立）</h3>
+        <p class="card-sub">公立病院・市立保育所等</p>
+        <div class="card-tags">
+          <span class="card-tag green">地方職員共済</span>
+          <span class="card-tag gold">付加給付あり</span>
+          <span class="card-tag">夜勤手当あり</span>
+        </div>
+      </div>
+
+      <!-- 準公務員 -->
+      <div class="type-card">
+        <div class="card-icon">🎓</div>
+        <div class="card-badge">準公務員</div>
+        <h3>国立大学・独立行政法人職員</h3>
+        <p class="card-sub">国立大学法人・JAXA・NHK等</p>
+        <div class="card-tags">
+          <span class="card-tag">各法人の健保組合</span>
+          <span class="card-tag warn">付加給付は法人による</span>
+          <span class="card-tag">公務員に準じた退職金</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 制度比較 -->
+<section id="benefits" class="benefit-section">
+  <div class="container">
+    <div class="section-label">STEP 2 — 制度を知る</div>
+    <h2>職種別<em>付加給付・医療費補填</em>の比較</h2>
+    <p class="lead">同じ「会社員」でも、公務員と民間では医療費の自己負担上限が大きく違います。この差が「保険の要否」を決定します。</p>
+
+    <div style="overflow-x:auto;">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>区分</th>
+            <th>加入共済／健保</th>
+            <th>医療費の自己負担上限（目安）</th>
+            <th>民間医療保険の必要性</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="highlight-row">
+            <td><strong>🍎 公立学校教員</strong></td>
+            <td>教職員共済組合</td>
+            <td class="good">月 約25,000円</td>
+            <td class="good">◎ ほぼ不要なケースが多い</td>
+          </tr>
+          <tr>
+            <td><strong>🏛️ 国家公務員</strong></td>
+            <td>各省庁共済組合</td>
+            <td class="good">月 約25,000円</td>
+            <td class="good">◎ ほぼ不要なケースが多い</td>
+          </tr>
+          <tr>
+            <td><strong>🏢 地方公務員（一般）</strong></td>
+            <td>地方職員共済組合</td>
+            <td class="good">月 約25,000円〜30,000円</td>
+            <td class="good">◎ 組合により非常に手厚い</td>
+          </tr>
+          <tr>
+            <td><strong>👮 警察官</strong></td>
+            <td>警察共済組合</td>
+            <td class="good">月 約25,000円</td>
+            <td class="warn">△ 職業リスクに応じた就業不能保険は要検討</td>
+          </tr>
+          <tr>
+            <td><strong>🎓 準公務員</strong></td>
+            <td>各法人健保</td>
+            <td class="warn">月 2万〜5万円（法人による）</td>
+            <td class="warn">△ 法人の制度を要確認</td>
+          </tr>
+          <tr>
+            <td><strong>🏢 民間企業（大企業）</strong></td>
+            <td>組合健保</td>
+            <td class="warn">月 約57,600円〜（高額療養費）</td>
+            <td class="bad">× 医療保険の必要性が高い</td>
+          </tr>
+          <tr>
+            <td><strong>🧑‍💼 民間企業（中小）</strong></td>
+            <td>協会けんぽ</td>
+            <td class="bad">月 約57,600円〜87,430円</td>
+            <td class="bad">× 医療保険は強く検討すべき</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="margin-top:24px; background:var(--white); border-radius:var(--radius); padding:24px; box-shadow:0 2px 12px rgba(26,46,90,.07);">
+      <h3 style="color:var(--navy-dark); margin-bottom:12px; font-size:1rem;">💡 付加給付制度とは？</h3>
+      <p style="font-size:.88rem; color:var(--text-light);">
+        健康保険組合が定める「自己負担の上限額」を超えた医療費を、組合が肩代わりしてくれる制度です。<br>
+        例えば教職員共済の場合、月の医療費自己負担が<strong style="color:var(--navy)">25,000円を超えた分</strong>は組合が補填します。<br>
+        国の高額療養費制度（月約57,600円〜）よりもさらに手厚く、がんや長期入院でも自己負担が少額に抑えられます。<br>
+        このため「医療費が怖いから入院保険が必要」という前提が、公務員では成り立たないことが多いのです。
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- 知識3ポイント -->
+<section>
+  <div class="container">
+    <div class="section-label">KEY POINTS</div>
+    <h2>公務員が押さえるべき<em>3つの知識</em></h2>
+    <p class="lead">「知っている人」と「知らない人」では、生涯で数百万円の差が生まれることも。</p>
+
+    <div class="knowledge-grid">
+      <div class="k-card">
+        <div class="k-num">01</div>
+        <h3>共済の付加給付を確認する</h3>
+        <p>自分の共済組合の自己負担上限額を把握する。これが民間保険の要否を決める最重要ポイント。</p>
+      </div>
+      <div class="k-card">
+        <div class="k-num">02</div>
+        <h3>不要な保険を整理する</h3>
+        <p>医療保険・がん保険が本当に必要か再確認。浮いた保険料を投資に回すと老後資産が大きく変わる。</p>
+      </div>
+      <div class="k-card">
+        <div class="k-num">03</div>
+        <h3>iDeCo・NISAを最大活用する</h3>
+        <p>公務員はiDeCoの拠出上限が月12,000円。少額でも早期スタートが有利。NISAとの併用が鉄則。</p>
+      </div>
+      <div class="k-card">
+        <div class="k-num">04</div>
+        <h3>退職金・共済年金を把握する</h3>
+        <p>公務員の退職金は勤続年数と等級で決まる。概算を知ることで老後の「不足分だけ」を補う設計ができる。</p>
+      </div>
+      <div class="k-card">
+        <div class="k-num">05</div>
+        <h3>就業不能リスクは職種で異なる</h3>
+        <p>警察・消防・自衛官は怪我・事故リスクが高い。就業不能保険の検討は職種と共済の補償内容を照らし合わせて。</p>
+      </div>
+      <div class="k-card">
+        <div class="k-num">06</div>
+        <h3>扶養・住宅手当を活用する</h3>
+        <p>公務員は扶養手当・住居手当の制度が充実。パートナーの収入や住宅ローンの計画に組み込んで最適化を。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 学習フロー -->
+<section id="flow" style="background:var(--navy-pale);">
+  <div class="container">
+    <div class="section-label">STEP 3 — 行動する</div>
+    <h2>正しい順番で<em>お金を整える</em></h2>
+    <p class="lead">保険・投資の前に「自分の保障の土台」を確認することが最優先です。</p>
+
+    <div class="flow-steps">
+      <div class="flow-step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h3>自分の共済組合と付加給付額を調べる</h3>
+          <p>職場の総務・共済窓口、または共済組合のWebサイトで「一部負担金払戻金」「家族療養付加金」の上限額を確認する。</p>
+          <div class="step-tip">📌 教員・国家公務員なら月25,000円が目安。まずここを確認！</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h3>今加入している保険を棚卸しする</h3>
+          <p>医療保険・がん保険・定期保険の保障内容と保険料を一覧化。共済で補われる範囲と重複していないか確認する。</p>
+          <div class="step-tip">📌 重複している保険は解約または減額を検討。浮いた保険料が資産形成に回せる。</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h3>本当に必要な保障だけ残す</h3>
+          <p>死亡保障（遺族が生活できるか）・就業不能保障（職種リスクに応じて）など、共済で補えない部分だけを民間保険でカバーする。</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <h3>iDeCo・NISAで資産形成を開始する</h3>
+          <p>月々の余剰資金をiDeCo（節税あり）とNISA（非課税）に振り分ける。公務員の退職金試算をもとに「不足分」を積み立てる。</p>
+          <div class="step-tip">📌 公務員のiDeCoは月上限12,000円。節税メリットを最大化しながら積み立てよう。</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <h3>定期的に見直す（年1回）</h3>
+          <p>昇給・異動・家族構成の変化に合わせて保険と投資配分を再確認。共済の制度改正にも注意。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="contact" class="cta-section">
+  <div class="container">
+    <h2>あなたの職種に合った<br>お金の見直しを始めませんか？</h2>
+    <p>付加給付の確認から保険の棚卸し、投資の始め方まで<br>公務員専門のFPが一緒に整理します。</p>
+    <a href="mailto:naoko.yakura@naoyemon.jp?subject=公務員向け金融相談のお問い合わせ" class="cta-btn">無料相談を申し込む</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 合同会社奈央右衛門 | 本サイトは一般的な情報提供を目的としており、個別の投資・保険の勧誘ではありません。</p>
+</footer>
+
+<script>
+  // タブ切り替え（表示フィルタリング）
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+
+  // スムーススクロール
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>
+</body>
+</html>
