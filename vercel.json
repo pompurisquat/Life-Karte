@@ -2,5 +2,8 @@
   "cleanUrls": true,
   "redirects": [
     { "source": "/", "destination": "/osaka", "permanent": false }
+  ],
+  "rewrites": [
+    { "source": "/osaka", "destination": "/行政サービス支援/osaka.html" }
   ]
 }
